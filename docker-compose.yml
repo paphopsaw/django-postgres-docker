@@ -1,0 +1,32 @@
+version: '3'
+services:
+  web:
+    container_name: mysite-django
+    build: .
+    networks:
+      mysite_network:
+    command: python manage.py runserver 0.0.0.0:3000
+    volumes:
+      - .:/mysite
+    ports:
+      - 3000:3000
+
+  db:
+    container_name: mysite-db
+    image: postgres:15
+    networks:
+      mysite_network:
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: mysite_development
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
+
+networks:
+  mysite_network:
+    name: mysite_network
