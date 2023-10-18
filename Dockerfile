@@ -1,6 +1,7 @@
 FROM python:3.11
 
-RUN apt update -qq && apt install -y nodejs
+RUN apt update -qq && apt install -y nodejs npm
+RUN npm install --global yarn
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1

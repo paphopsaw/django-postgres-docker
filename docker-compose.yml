@@ -5,7 +5,7 @@ services:
     build: .
     networks:
       mysite_network:
-    command: python manage.py runserver 0.0.0.0:3000
+    command: bash -c "python manage.py runserver 0.0.0.0:3000 & yarn install && yarn dev"
     volumes:
       - .:/mysite
     ports:
